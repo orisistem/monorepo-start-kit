@@ -57,3 +57,16 @@ A IA não conhece as regras do seu projeto a menos que você as explicite.
 | Revisão de segurança sensível            |     |   ✅   |
 | Definição de regras de negócio complexas |     |   ✅   |
 | Escolha de stacks e dependências         |     |   ✅   |
+
+## 6. Política de Idiomas
+
+O projeto adota **bilinguismo estratégico** entre backend e frontend:
+
+### Backend (`backend/`)
+
+100% em inglês — todo código-fonte (variáveis, funções, classes, interfaces, tipos, comentários, logs, mensagens de erro, nomes de arquivo e diretório).
+
+### Frontend (`frontend/`)
+
+- **Código**: inglês (variáveis, funções, classes, tipos, nomes de arquivo)
+- **UI**: português brasileiro — tudo que o usuário vê (rótulos, botões, validações, notificações, placeholders, meta tags, formatação de data/moeda/número)

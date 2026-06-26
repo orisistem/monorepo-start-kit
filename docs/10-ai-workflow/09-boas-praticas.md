@@ -59,6 +59,29 @@ src/
 - **Isolamento entre módulos**: Um módulo não importa diretamente a `infrastructure/` de outro módulo. A comunicação entre módulos ocorre via `shared/` ou pela camada de application.
 - **Código compartilhado**: Tudo que é reutilizado entre módulos vive em `shared/`, nunca duplicado dentro dos módulos.
 
+## 4. Idioma
+
+O projeto adota **bilinguismo estratégico**: backend e frontend seguem regras distintas.
+
+### Backend (`backend/`)
+
+- Todo o código-fonte (variáveis, funções, classes, comentários, logs, mensagens de erro, nomes de arquivo) deve ser **escrito em inglês**
+- Exceção: arquivos de configuração que exijam locale pt-BR
+
+### Frontend (`frontend/`)
+
+- Código-fonte (variáveis, funções, classes, tipos, nomes de arquivo) deve ser **escrito em inglês**
+- Tudo que aparece para o usuário final deve ser **apresentado em português brasileiro (pt-BR)**:
+  - Textos de UI (rótulos, botões, mensagens, placeholders)
+  - Validações e mensagens de erro visíveis ao usuário
+  - Notificações, toasts, alerts
+  - Títulos, descrições, meta tags
+  - Formatação de datas, moeda e números no locale pt-BR
+
+**Prompt para lembrar a IA:**
+
+> "Respeite a política de idiomas: backend 100% inglês. Frontend: código em inglês, UI em português brasileiro. Nomes de i18n keys em inglês, valores em pt-BR."
+
 ## 5. Testes
 
 Seguindo a pirâmide de `docs/09-testing/`:
@@ -96,20 +119,7 @@ Tipos válidos: feat, fix, docs, style, refactor, perf, test, build, ci, chore, 
 
 ## 8. Prompt Resumido para Iniciar Sessão
 
-Cole este bloco no início de cada sessão com a IA:
-
-```
-PROJETO: monorepo-start-kit
-ARQUITETURA: Feature-Sliced Design + Clean Architecture (backend e frontend)
-REGRAS:
-- Dependências apontam para dentro (domain não sabe de infra/presentation)
-- kebab-case para pastas e arquivos
-- Conventional Commits para mensagens
-- ESLint + Prettier para formato
-- Testes: unitários isolados, integração com banco real, e2e para fluxos críticos
-- Qualidade: sem any, sem try/catch vazio, sem magic numbers, sem código comentado
-DOCS: docs/10-ai-workflow/ contém o fluxo completo de IA
-```
+Copie o bloco abaixo do arquivo [`00-start-prompt.md`](00-start-prompt.md) no início de cada sessão com a IA.
 
 ## Checklist de Boas Práticas
 
@@ -119,4 +129,5 @@ DOCS: docs/10-ai-workflow/ contém o fluxo completo de IA
 - [ ] Testes na camada correta da pirâmide
 - [ ] Mensagens de commit no padrão
 - [ ] Código sem `any`, sem magic numbers, sem dead code
+- [ ] Política de idiomas respeitada (backend inglês, frontend código inglês + UI pt-BR)
 - [ ] Prompt de inicialização usado no começo da sessão

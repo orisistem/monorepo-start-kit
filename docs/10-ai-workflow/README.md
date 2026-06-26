@@ -44,6 +44,7 @@ Este diretório contém as orientações para integrar ferramentas de Inteligên
 
 | Documento                  | Descrição                                                              |
 | -------------------------- | ---------------------------------------------------------------------- |
+| `00-start-prompt`          | Prompt resumido para copiar no início de cada sessão com a IA          |
 | `01-principios-gerais`     | Filosofia de uso, responsabilidades e boas práticas fundamentais       |
 | `02-business-discovery`    | Entendimento do negócio, domínios, linguagem ubíqua e bounded contexts |
 | `03-prompt-engineering`    | Técnicas e templates para estruturar requisições à IA                  |
@@ -53,6 +54,8 @@ Este diretório contém as orientações para integrar ferramentas de Inteligên
 | `07-fluxo-manutencao`      | Correção de bugs, melhorias incrementais e refatoração                 |
 | `08-ferramentas`           | Configuração e uso do OpenCode, Antigravity e complementares           |
 | `09-boas-praticas`         | Padrões do template que a IA deve respeitar                            |
+| `10-memory`                | Memória de contexto entre sessões de IA (template + registro)          |
+| `11-codebase`              | Mapa do sistema, módulos, dependências e entry points                  |
 
 ## Templates de Especificação
 
