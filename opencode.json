@@ -1,0 +1,11 @@
+{
+  "$schema": "https://opencode.ai/schema/opencode.json",
+  "default_agent": "build",
+  "permission": {
+    "skill": {
+      "feature-sliced": "allow",
+      "test-pyramid": "allow",
+      "tech-debt": "allow"
+    }
+  }
+}

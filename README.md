@@ -8,8 +8,8 @@ The structure follows a **Monorepo** approach, separating the frontend and backe
 
 - **`docs/`**: Everything related to project management, product requirements, and technical documentation.
 - **`infrastructure/`**: Operations and DevOps, including Terraform (IaC), Ansible playbooks, and Nginx configs.
-- **`backend/`**: The backend source code (`src/` and `tests/`), organized around Clean Architecture principles (independent of frameworks, databases, and UIs). Contains its own `Dockerfile`.
-- **`frontend/`**: The frontend source code, organized around a Module-Based Architecture (Feature-Sliced Design) for high scalability and cohesion. Contains its own `Dockerfile`.
+- **`backend/`**: The backend source code (`src/` and `tests/`), organized around Feature-Sliced Design + Clean Architecture (modules with domain/application/infrastructure/presentation layers). Contains its own `Dockerfile`.
+- **`frontend/`**: The frontend source code, organized around Feature-Sliced Design + Clean Architecture (modules with domain/application/infrastructure/presentation layers). Contains its own `Dockerfile`.
 - **`scripts/`**: Automation for dev ops and utility tasks.
 - **`.github/`**: CI/CD pipelines.
 - **`docker-compose.yml`**: Root orchestrator for spinning up the full stack (Frontend, Backend, DB, Nginx).
@@ -24,17 +24,30 @@ Para manter este projeto limpo, escalável e livre de dívidas técnicas, toda a
 
 ### 2. Regras de Arquitetura (A "Regra de Ouro")
 
-Tanto o Backend quanto os Módulos do Frontend seguem a **Clean Architecture**. A regra de ouro é a **Regra de Dependência**:
+Tanto Backend quanto Frontend seguem **Feature-Sliced Design + Clean Architecture**. A regra de ouro é a **Regra de Dependência**:
 
-> _As dependências de código só podem apontar para dentro. A camada mais interna (`domain`/`core`) não pode saber absolutamente NADA sobre as camadas externas (Banco de Dados, React, Axios, Express)._
+> _As dependências de código só podem apontar para dentro. A camada `domain` não pode saber absolutamente NADA sobre as camadas externas (`infrastructure`, `presentation`)._
 
 - **NÃO FAÇA**: Importar uma biblioteca do banco de dados (ex: Prisma, Mongoose) dentro de uma Entidade ou Caso de Uso.
 - **NÃO FAÇA**: Importar código do `frontend/` dentro do `backend/` e vice-versa. O Monorepo serve para organizar, não para misturar código cliente-servidor.
 
-### 3. Frontend (Modular Clean Architecture)
+### 3. Estrutura de Módulos (FSD)
 
-- Não crie componentes genéricos dentro de módulos de negócio. Se um Botão ou Input for usado em mais de um lugar, ele deve obrigatoriamente ir para `frontend/src/shared/components/`.
-- Cada módulo em `frontend/src/modules/` deve ser independente. O módulo de `auth` não deve chamar diretamente a infraestrutura do módulo de `products`.
+O projeto é organizado em **módulos** (fatias de domínio), tanto no backend quanto no frontend:
+
+```
+src/
+├── shared/                     # Código reutilizável entre módulos
+└── modules/
+    └── [modulo]/
+        ├── domain/             # Entidades, regras de negócio (mais interna)
+        ├── application/        # Casos de uso, portas, DTOs
+        ├── infrastructure/     # Adaptadores (banco, API externa)
+        └── presentation/       # Controllers, componentes UI (mais externa)
+```
+
+- Não crie componentes genéricos dentro de módulos de negócio. Se reutilizado em mais de um módulo, deve ir para `shared/`.
+- Cada módulo deve ser independente. Um módulo não chama diretamente a infraestrutura de outro módulo.
 
 ### 4. Git Workflow & Commits
 
@@ -46,6 +59,15 @@ Tanto o Backend quanto os Módulos do Frontend seguem a **Clean Architecture**. 
 
 - **Prettier e ESLint** estão configurados em conjunto com o Husky (`lint-staged`).
 - **NÃO** commite código mal formatado. Ao rodar `git commit`, os arquivos modificados serão formatados automaticamente. Se houver um erro de linting grave, o commit será abortado.
+
+### 6. Fluxo de Trabalho com IA
+
+- Este projeto inclui um guia completo para uso de ferramentas de IA no ciclo de desenvolvimento.
+- Consulte [`docs/10-ai-workflow/README.md`](./docs/10-ai-workflow/README.md) para o fluxo completo: discovery do negócio, concepção, desenvolvimento, testes e manutenção com IA.
+- Use os templates de prompt em `docs/10-ai-workflow/02-prompt-engineering.md` para interagir com OpenCode e Antigravity.
+- Skills reutilizáveis em `.opencode/skills/` (feature-sliced, test-pyramid, tech-debt).
+- Agentes especializados em `.opencode/agents/` — use `@code-reviewer` ou `@tester` no OpenCode.
+- Templates de especificação: `docs/01-requirements/PRD-template.md` e `docs/03-architecture/tech-spec-template.md`.
 
 ## Getting Started
 

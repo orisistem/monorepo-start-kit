@@ -4,14 +4,14 @@ This directory contains the client-side application, built with a **Module-Based
 
 ## Structure
 
-We use **Modular Clean Architecture**, which combines Feature-Sliced Design with Clean Architecture principles.
+We use **Feature-Sliced Design (FSD)** combined with **Clean Architecture** — the same architecture used in the backend, ensuring consistency across the monorepo.
 
 - **`src/app/`**: Application entry point, global routing, and global providers.
 - **`src/shared/`**: Global, reusable elements across all modules.
-  - `components/`: Generic UI components (Atoms, Molecules).
-  - `assets/`: Images, fonts, global styles.
-  - `utils/`: Global utility functions.
+  - `domain/`: Shared entities, types, and base interfaces.
+  - `application/`: Shared use cases, DTOs, and utilities.
   - `infrastructure/`: Base API clients (e.g., Axios instance).
+  - `presentation/`: Generic UI components (Atoms, Molecules), global styles, assets.
 - **`src/modules/`**: Business logic isolated by feature. Inside each module, we apply Clean Architecture:
   - Example (`auth/`):
     - `domain/`: Entities and Ports (interfaces).
