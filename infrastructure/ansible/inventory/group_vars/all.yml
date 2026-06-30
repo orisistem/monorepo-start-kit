@@ -1,0 +1,7 @@
+---
+docker_version: "24.0"
+docker_compose_version: "2.27.0"
+project_name: "orihome"
+app_env: "{{ lookup('env', 'ENVIRONMENT') | default('staging') }}"
+ansible_python_interpreter: /usr/bin/python3
+
