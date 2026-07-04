@@ -115,3 +115,5 @@ obj/
 /tmp/
 /temp/
 notes.md
+
+.vscode/

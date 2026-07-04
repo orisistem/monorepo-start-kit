@@ -1,0 +1,56 @@
+services:
+  nginx:
+    image: ${NGINX_IMAGE}
+    container_name: nginx
+    restart: always
+    ports:
+      - "${NGINX_PORT_HTTP}:80"
+      - "${NGINX_PORT_HTTPS}:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/snippets:/etc/nginx/snippets:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+
+      # - ./certbot/conf:/etc/letsencrypt:ro
+      # - ./certbot/www:/var/www/certbot:ro
+
+      - ./logs/access:/var/log/nginx/access
+      - ./logs/error:/var/log/nginx/error
+    
+    environment:
+      - DOMAIN=${DOMAIN}
+      - DOMAIN_WWW=${DOMAIN_WWW}
+      # - APP_HOST=${APP_HOST}
+      # - APP_PORT=${APP_PORT}
+
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    
+    # Logs
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    networks:
+      - orihome-network
+      
+networks:
+  orihome-network:
+    driver: bridge
+    external: true
