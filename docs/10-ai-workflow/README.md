@@ -52,10 +52,11 @@ Este diretório contém as orientações para integrar ferramentas de Inteligên
 | `05-fluxo-desenvolvimento` | Implementação assistida por IA (TDD, pair programming)                 |
 | `06-fluxo-revisao-testes`  | Revisão de código, geração de testes e validação com IA                |
 | `07-fluxo-manutencao`      | Correção de bugs, melhorias incrementais e refatoração                 |
-| `08-ferramentas`           | Configuração e uso do OpenCode, Antigravity e complementares           |
+| `08-ferramentas`           | Matriz de decisão multi-agente (Claude Code, OpenCode, Copilot, Cursor, Antigravity) |
 | `09-boas-praticas`         | Padrões do template que a IA deve respeitar                            |
 | `10-memory`                | Memória de contexto entre sessões de IA (template + registro)          |
 | `11-codebase`              | Mapa do sistema, módulos, dependências e entry points                  |
+| `12-workflow-plan`         | **Roteiro-mestre**: diagnóstico, gaps, plano de fases, lazy loading    |
 
 ## Templates de Especificação
 
@@ -63,6 +64,8 @@ Disponíveis para uso com agentes de IA:
 
 - **`docs/01-requirements/PRD-template.md`** — Estrutura de Product Requirements Document (histórias, critérios de aceitação, regras de negócio)
 - **`docs/03-architecture/tech-spec-template.md`** — Especificação técnica (contratos, entidades, plano de implementação, riscos)
+- **`docs/03-architecture/ADR-template.md`** — Architecture Decision Record (contexto, decisão, consequências, alternativas)
+- **`docs/05-manuals/bug-report-template.md`** — Bug report com seção de diagnóstico por IA
 
 Use no prompt: _"Gere um PRD seguindo o template em docs/01-requirements/PRD-template.md"_
 
@@ -78,7 +81,10 @@ Use no prompt: _"Gere um PRD seguindo o template em docs/01-requirements/PRD-tem
 
 ## Ferramentas Oficiais
 
-- **[OpenCode](https://opencode.ai)** — Agente CLI para engenharia de software
-- **Antigravity** — Ferramenta complementar de IA no setup de desenvolvimento
+- **[Claude Code](https://claude.ai/code)** — Agente CLI da Anthropic para implementação, debugging e refatoração
+- **[OpenCode](https://opencode.ai)** — Agente CLI para engenharia de software com skills e agentes customizados
+- **[GitHub Copilot](https://github.com/features/copilot)** — Autocomplete inline e chat no IDE
+- **[Cursor](https://cursor.com)** — IDE com IA nativa para prototipagem e edição multi-arquivo
+- **Antigravity** — Ferramenta complementar de IA para pesquisa e documentação
 
-Consulte `08-ferramentas` para guias detalhados de configuração.
+Consulte `08-ferramentas` para a matriz de decisão completa: qual ferramenta usar em cada fase e tipo de tarefa.

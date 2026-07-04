@@ -8,7 +8,7 @@ Correção de bugs, melhorias incrementais e refatoração com auxílio de IA.
 Bug / Melhoria / Refatoração identificado
      │
      ▼
-Registro (issue ou task)
+Registro (use `docs/05-manuals/bug-report-template.md` para bugs)
      │
      ▼
 Análise com IA

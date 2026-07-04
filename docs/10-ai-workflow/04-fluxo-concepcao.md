@@ -69,16 +69,9 @@ Peça para a IA desafiar os requisitos gerados:
 
 ### 5. ADRs (Architecture Decision Records)
 
-Para decisões arquiteturais, use o formato ADR:
+Para decisões arquiteturais, use o template em `docs/03-architecture/ADR-template.md`:
 
-> "Precisamos decidir entre [opção A] e [opção B] para [contexto]. Gere um ADR seguindo o formato:
->
-> - Title
-> - Status (proposed/accepted/deprecated)
-> - Context
-> - Decision
-> - Consequences (positive & negative)
-> - Alternatives considered"
+> "Precisamos decidir entre [opção A] e [opção B] para [contexto]. Gere um ADR seguindo o template em `docs/03-architecture/ADR-template.md` e salve em `docs/03-architecture/ADR-[NNN]-[slug].md`."
 
 ## Checklist de Concepção
 
