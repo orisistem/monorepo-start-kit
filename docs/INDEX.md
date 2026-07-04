@@ -21,7 +21,7 @@
 | **Corrigir um bug** | `docs/10-ai-workflow/07-fluxo-manutencao.md` | Template de bug report |
 | **Refatorar** | `docs/10-ai-workflow/07-fluxo-manutencao.md` (seção Refatoração) | Skill `tech-debt` |
 | **Fazer um commit** | `docs/08-workflow/README.md` | `npm run commit` |
-| **Abrir um PR** | `docs/08-workflow/README.md` | PR template |
+| **Abrir um PR** | `docs/08-workflow/README.md` | `docs/08-workflow/PR-template.md` |
 | **Fazer deploy** | `infrastructure/` + `docker-compose.yml` | Runbook em `docs/05-manuals/` |
 | **Configurar monitoramento** | `docs/07-monitoring/README.md` | `docker-compose.monitoring.yml` |
 | **Escrever um prompt melhor** | `docs/10-ai-workflow/03-prompt-engineering.md` | — |

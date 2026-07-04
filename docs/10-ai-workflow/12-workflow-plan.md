@@ -217,10 +217,10 @@
 |---|--------|-----------|-------|
 | T-05 | Criar template de sprint/milestone | Em `docs/02-planning/` — como quebrar épicos em tasks, estimar, alocar | Template de sprint com seções: objetivo, tasks, responsáveis, DoD |
 | T-06 | Criar template de OpenAPI | Em `docs/04-api/` — ponto de partida para specs de API REST | Arquivo base com info, servers, paths, components, security |
-| T-07 | Criar template de PR | Em `docs/08-workflow/` — checklist do que todo PR deve conter | Template: descrição, issues relacionadas, checklist, screenshots |
+| T-07 | Criar template de PR | ✅ **Concluído** — `docs/08-workflow/PR-template.md` | Checklist do autor + checklist do revisor + artefatos relacionados |
 | T-08 | Documentar CI/CD pipeline | Em `docs/08-workflow/` ou `.github/` — o que roda, quando, por que | Diagrama do pipeline: lint → test → build → deploy |
 | T-09 | Criar runbook base | Em `docs/05-manuals/` — como rodar localmente, como debugar, como fazer deploy | Runbook de dev environment |
-| T-10 | Expandir `08-workflow/` além de Git | Branching strategy (Git Flow ou Trunk-Based), code review flow, release flow | Documento de workflow completo |
+| T-10 | Expandir `08-workflow/` além de Git | ✅ **Concluído** — `docs/08-workflow/README.md` reescrito | Branching, PR flow, code review rules, merge rules (7 critérios), release flow |
 | T-11 | Criar decision framework multi-agente | ✅ **Concluído** — `08-ferramentas.md` reescrito como framework multi-agente | Claude Code, OpenCode, Copilot, Copilot Chat, Cursor, Antigravity; matriz de decisão por fase, tipo de tarefa e complexidade; fluxo de alternância com exemplo real |
 
 ### 5.3 Prioridade 🔵 — Desejáveis (melhorias contínuas)
