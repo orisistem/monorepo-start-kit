@@ -27,29 +27,24 @@ export const SalesPipeline: React.FC<SalesPipelineProps> = ({ stages }) => {
   }
 
   const maxValue = Math.max(...stages.map((s) => s.totalValue));
-
-  // Assign week-level mock bars per stage
-  const barsData = [
-    [0.15, 0.25, 0.40, 0.55, 0.75, 1.0],
-    [0.20, 0.30, 0.55, 0.45, 0.85, 0.70],
-    [0.10, 0.20, 0.30, 0.15, 0.45, 0.35],
-    [0.05, 0.10, 0.20, 0.10, 0.25, 0.18],
+  const total = stages.reduce((a, s) => a + s.totalValue, 0);
+  const colors = [
+    'var(--color-primary)',
+    'var(--color-primary-container)',
+    'var(--color-secondary)',
+    'var(--color-tertiary)',
   ];
 
   return (
     <div className="pipeline-card">
-      {/* Header */}
       <div className="pipeline-header">
         <div>
           <h3 className="font-headline">Funil de Vendas</h3>
           <span className="text-body-sm text-secondary">Análise por Estágio • Q3 2026</span>
         </div>
-        <span className="material-symbols-outlined" style={{ color: 'var(--color-on-surface-variant)', fontSize: 20, cursor: 'pointer' }}>
-          filter_list
-        </span>
+        <span className="material-symbols-outlined pipeline-filter-icon">filter_list</span>
       </div>
 
-      {/* Stage steps */}
       <div className="pipeline-stages-container">
         <div className="pipeline-connecting-line" />
         {stages.map((stage, index) => (
@@ -71,41 +66,22 @@ export const SalesPipeline: React.FC<SalesPipelineProps> = ({ stages }) => {
         ))}
       </div>
 
-      {/* Proportional value bars */}
       <div style={{ marginTop: 'auto' }}>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          marginBottom: 8,
-          fontSize: 11,
-          color: 'var(--color-on-surface-variant)',
-          textTransform: 'uppercase',
-          letterSpacing: '0.06em',
-          fontWeight: 600,
-        }}>
+        <div className="pipeline-volume-header">
           <span>Volume por Estágio</span>
-          <span>Total: R$ {((stages.reduce((a, s) => a + s.totalValue, 0)) / 1000).toLocaleString('pt-BR')}k</span>
+          <span>Total: R$ {(total / 1000).toLocaleString('pt-BR')}k</span>
         </div>
-        <div style={{ display: 'flex', gap: 6, alignItems: 'flex-end', height: 72 }}>
+        <div className="pipeline-bars">
           {stages.map((stage, idx) => {
             const pct = (stage.totalValue / maxValue) * 100;
-            const colors = [
-              'var(--color-primary)',
-              'var(--color-primary-container)',
-              'var(--color-secondary)',
-              'var(--color-tertiary)',
-            ];
             return (
               <div
                 key={stage.id}
                 title={`${stageNameMap[stage.name] ?? stage.name}: R$ ${stage.totalValue.toLocaleString('pt-BR')}`}
+                className="pipeline-bar"
                 style={{
-                  flex: 1,
                   height: `${pct}%`,
                   background: colors[idx],
-                  borderRadius: '6px 6px 0 0',
-                  cursor: 'pointer',
-                  transition: 'opacity 0.2s, height 0.8s cubic-bezier(0.16,1,0.3,1)',
                   opacity: 0.7 + idx * 0.05,
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
@@ -114,25 +90,12 @@ export const SalesPipeline: React.FC<SalesPipelineProps> = ({ stages }) => {
             );
           })}
         </div>
-        <div style={{
-          display: 'flex',
-          gap: 6,
-          borderTop: '1px solid var(--color-outline-variant)',
-          paddingTop: 4,
-        }}>
-          {stages.map((stage, idx) => {
-            const colors = [
-              'var(--color-primary)',
-              'var(--color-primary-container)',
-              'var(--color-secondary)',
-              'var(--color-tertiary)',
-            ];
-            return (
-              <div key={stage.id} style={{ flex: 1, textAlign: 'center', fontSize: 10, color: colors[idx], fontWeight: 600 }}>
-                {stage.dealCount}
-              </div>
-            );
-          })}
+        <div className="pipeline-bar-labels">
+          {stages.map((stage, idx) => (
+            <div key={stage.id} style={{ color: colors[idx] }}>
+              {stage.dealCount}
+            </div>
+          ))}
         </div>
       </div>
     </div>

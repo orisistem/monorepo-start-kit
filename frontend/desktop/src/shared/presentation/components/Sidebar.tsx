@@ -2,12 +2,24 @@ import React from 'react';
 
 interface SidebarProps {
   isCollapsed: boolean;
-  onToggle: () => void;
+  isMobileOpen: boolean;
+  onToggleCollapse: () => void;
+  onToggleMobile: () => void;
+  isMobile: boolean;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
+export const Sidebar: React.FC<SidebarProps> = ({
+  isCollapsed,
+  isMobileOpen,
+  onToggleCollapse,
+  onToggleMobile,
+  isMobile,
+}) => {
+  const collapsedClass = isMobile ? '' : (isCollapsed ? 'collapsed' : '');
+  const mobileClass = isMobile ? (isMobileOpen ? 'mobile-open' : 'mobile-closed') : '';
+
   return (
-    <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
+    <aside className={`sidebar ${collapsedClass} ${mobileClass}`}>
       <div className="sidebar-header">
         <div className="sidebar-brand">
           <div className="sidebar-logo">
@@ -18,45 +30,56 @@ export const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
               dataset
             </span>
           </div>
-          {!isCollapsed && (
+          {(!isCollapsed || isMobile) && (
             <div className="brand-text">
               <h1 className="sidebar-title font-headline">OriDeal</h1>
               <p className="sidebar-subtitle text-label-caps">Gestão Comercial</p>
             </div>
           )}
         </div>
-        <button
-          className="collapse-btn"
-          onClick={onToggle}
-          title={isCollapsed ? 'Expandir menu' : 'Recolher menu'}
-          aria-label={isCollapsed ? 'Expandir menu' : 'Recolher menu'}
-        >
-          <span className="material-symbols-outlined">
-            {isCollapsed ? 'chevron_right' : 'chevron_left'}
-          </span>
-        </button>
+        {isMobile ? (
+          <button
+            className="collapse-btn"
+            onClick={onToggleMobile}
+            title="Fechar menu"
+            aria-label="Fechar menu"
+          >
+            <span className="material-symbols-outlined">close</span>
+          </button>
+        ) : (
+          <button
+            className="collapse-btn"
+            onClick={onToggleCollapse}
+            title={isCollapsed ? 'Expandir menu' : 'Recolher menu'}
+            aria-label={isCollapsed ? 'Expandir menu' : 'Recolher menu'}
+          >
+            <span className="material-symbols-outlined">
+              {isCollapsed ? 'chevron_right' : 'chevron_left'}
+            </span>
+          </button>
+        )}
       </div>
 
       <nav className="sidebar-nav">
         <a className="nav-item active" href="#" title="Painel Geral">
           <span className="material-symbols-outlined">dashboard</span>
-          {!isCollapsed && <span className="text-label-caps">Painel Geral</span>}
+          {(!isCollapsed || isMobile) && <span className="text-label-caps">Painel Geral</span>}
         </a>
         <a className="nav-item" href="#" title="Clientes">
           <span className="material-symbols-outlined">group</span>
-          {!isCollapsed && <span className="text-label-caps">Clientes</span>}
+          {(!isCollapsed || isMobile) && <span className="text-label-caps">Clientes</span>}
         </a>
         <a className="nav-item" href="#" title="Propostas">
           <span className="material-symbols-outlined">description</span>
-          {!isCollapsed && <span className="text-label-caps">Propostas</span>}
+          {(!isCollapsed || isMobile) && <span className="text-label-caps">Propostas</span>}
         </a>
         <a className="nav-item" href="#" title="Contratos">
           <span className="material-symbols-outlined">verified</span>
-          {!isCollapsed && <span className="text-label-caps">Contratos</span>}
+          {(!isCollapsed || isMobile) && <span className="text-label-caps">Contratos</span>}
         </a>
         <a className="nav-item" href="#" title="Configurações">
           <span className="material-symbols-outlined">settings</span>
-          {!isCollapsed && <span className="text-label-caps">Configurações</span>}
+          {(!isCollapsed || isMobile) && <span className="text-label-caps">Configurações</span>}
         </a>
       </nav>
 
@@ -68,7 +91,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggle }) => {
               alt="Marcus Vane"
             />
           </div>
-          {!isCollapsed && (
+          {(!isCollapsed || isMobile) && (
             <div className="user-info">
               <p className="user-name text-label-caps">Marcus Vane</p>
               <p className="user-role">Diretor de Operações</p>

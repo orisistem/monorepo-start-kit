@@ -36,7 +36,7 @@ export const RecentDeals: React.FC<RecentDealsProps> = ({ deals }) => {
       <div className="recent-deals-header">
         <div>
           <h3 className="font-headline">Atividade Recente de Negócios</h3>
-          <p style={{ margin: '2px 0 0', fontSize: 12, color: 'var(--color-on-surface-variant)' }}>
+          <p className="recent-deals-subtitle">
             {deals.length} oportunidades ativas este trimestre
           </p>
         </div>
@@ -49,7 +49,7 @@ export const RecentDeals: React.FC<RecentDealsProps> = ({ deals }) => {
             <tr>
               <th className="text-label-caps">Cliente</th>
               <th className="text-label-caps">Valor da Proposta</th>
-              <th className="text-label-caps">Cronograma</th>
+              <th className="text-label-caps crono-col">Cronograma</th>
               <th className="text-label-caps">Status</th>
               <th className="text-label-caps" style={{ textAlign: 'right' }}>Ação</th>
             </tr>
@@ -65,7 +65,6 @@ export const RecentDeals: React.FC<RecentDealsProps> = ({ deals }) => {
 
               return (
                 <tr key={deal.id} className="deal-row">
-                  {/* Client */}
                   <td className="deals-cell">
                     <div className="client-info">
                       <div
@@ -80,35 +79,21 @@ export const RecentDeals: React.FC<RecentDealsProps> = ({ deals }) => {
                       </div>
                     </div>
                   </td>
-
-                  {/* Value */}
                   <td className="deals-cell text-data-tabular">
-                    <span style={{ fontWeight: 600, color: 'var(--color-on-surface)' }}>
-                      R$ {deal.value.toLocaleString('pt-BR')}
-                    </span>
+                    <span className="deal-value">R$ {deal.value.toLocaleString('pt-BR')}</span>
                   </td>
-
-                  {/* Schedule */}
-                  <td className="deals-cell text-secondary">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                      <span className="material-symbols-outlined" style={{ fontSize: 14, color: 'var(--color-outline)' }}>
-                        date_range
-                      </span>
+                  <td className="deals-cell text-secondary crono-col">
+                    <div className="deal-schedule">
+                      <span className="material-symbols-outlined schedule-icon">date_range</span>
                       {deal.startDate} → {deal.endDate}
                     </div>
                   </td>
-
-                  {/* Status */}
                   <td className="deals-cell">
                     <span className={`status-badge text-label-caps ${statusInfo.classStyle}`}>
-                      <span className="material-symbols-outlined" style={{ fontSize: 12, marginRight: 4, fontVariationSettings: "'FILL' 1" }}>
-                        {statusInfo.icon}
-                      </span>
+                      <span className="material-symbols-outlined status-icon">{statusInfo.icon}</span>
                       {statusInfo.label}
                     </span>
                   </td>
-
-                  {/* Action */}
                   <td className="deals-cell" style={{ textAlign: 'right' }}>
                     <button className="action-menu-btn" title="Mais opções" aria-label="Mais opções">
                       <span className="material-symbols-outlined">more_vert</span>
@@ -119,6 +104,55 @@ export const RecentDeals: React.FC<RecentDealsProps> = ({ deals }) => {
             })}
           </tbody>
         </table>
+      </div>
+
+      <div className="deals-mobile-list">
+        {deals.map((deal, i) => {
+          const statusInfo = statusMap[deal.status] ?? {
+            label: deal.status,
+            classStyle: 'status-default',
+            icon: 'circle',
+          };
+          const color = avatarColors[i % avatarColors.length];
+
+          return (
+            <div key={deal.id} className="deal-card-mobile">
+              <div className="deal-card-header">
+                <div className="client-info">
+                  <div
+                    className="client-avatar font-headline"
+                    style={{ background: color.bg, color: color.fg }}
+                  >
+                    {deal.clientName.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="client-name">{deal.clientName}</p>
+                    <p className="client-project">{deal.projectName}</p>
+                  </div>
+                </div>
+                <button className="action-menu-btn" title="Mais opções" aria-label="Mais opções">
+                  <span className="material-symbols-outlined">more_vert</span>
+                </button>
+              </div>
+              <div className="deal-card-body">
+                <div className="deal-card-row">
+                  <span className="deal-card-label">Valor</span>
+                  <span className="deal-card-value">R$ {deal.value.toLocaleString('pt-BR')}</span>
+                </div>
+                <div className="deal-card-row">
+                  <span className="deal-card-label">Período</span>
+                  <span className="deal-card-period">{deal.startDate} → {deal.endDate}</span>
+                </div>
+              </div>
+              <div className="deal-card-footer">
+                <span className={`status-badge text-label-caps ${statusInfo.classStyle}`}>
+                  <span className="material-symbols-outlined status-icon">{statusInfo.icon}</span>
+                  {statusInfo.label}
+                </span>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
