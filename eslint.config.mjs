@@ -16,7 +16,8 @@ export default [
       "**/*.log",
       "*.config.js",
       "*.config.mjs",
-      "*.config.cjs"
+      "*.config.cjs",
+      "frontend/desktop/src-tauri/"
     ]
   }
 ];

@@ -116,4 +116,9 @@ obj/
 /temp/
 notes.md
 
+# ==========================================
+# Rust / Tauri
+# ==========================================
+frontend/desktop/src-tauri/target/
+
 .vscode/
