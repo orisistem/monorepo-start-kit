@@ -45,6 +45,16 @@
 - Types: explicit (no `any`)
 - Tests: unit (isolated), integration (real DB), e2e (full stack)
 
+## CSS & Theme
+
+- **Design tokens** vivem em `shared/theme/tokens.css` (Tailwind v4 `@theme`) — nunca usar valores fixos
+- **Cores, fontes, espaçamentos, bordas, sombras** devem SEMPRE referenciar `var(--token-name)` ou utilities Tailwind (ex: `bg-surface-container-low`, `text-primary`)
+- **Novos componentes**: preferir utilities Tailwind no JSX em vez de criar CSS custom
+- **CSS custom**: criar APENAS para lógica complexa (animações multi-estado, collapsible, transições condicionais) — e sempre usar `var(--*)`
+- **Global CSS** compartilhado fica em `shared/theme/`; CSS específico de módulo NÃO é permitido
+- Exemplo de código ❌: `background: #1c1c1e` / `padding: 24px`
+- Exemplo de código ✅: `bg-surface-container-low` / `p-6`
+
 ## Commands
 
 - `npm run commit` — interactive commit with Commitizen

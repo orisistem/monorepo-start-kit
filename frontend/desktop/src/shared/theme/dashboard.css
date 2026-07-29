@@ -248,6 +248,35 @@
   text-overflow: ellipsis;
 }
 
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--color-on-surface-variant);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.logout-btn:hover {
+  background: var(--color-surface-container);
+  color: var(--color-error);
+}
+
+.logout-btn .material-symbols-outlined {
+  font-size: 18px;
+}
+
 /* ═══════════════════════════════════════
    TOP NAV
    ═══════════════════════════════════════ */

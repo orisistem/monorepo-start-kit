@@ -1,12 +1,9 @@
-import React, { ReactNode, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 import { Sidebar } from '../components/Sidebar';
 import { TopNav } from '../components/TopNav';
 
-interface MainLayoutProps {
-  children: ReactNode;
-}
-
-export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+export const MainLayout = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -47,7 +44,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         isMobile={isMobile}
       />
       <main className="main-content">
-        <div className="content-container">{children}</div>
+        <div className="content-container"><Outlet /></div>
       </main>
       {isMobile && isMobileOpen && <div className="sidebar-backdrop" onClick={toggleMobile} />}
     </div>

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { MainLayout } from '../../../shared/presentation/layouts/MainLayout';
 import { KPICards } from './components/KPICards';
 import { SalesPipeline } from './components/SalesPipeline';
 import { GoalProgress } from './components/GoalProgress';
@@ -23,8 +22,7 @@ export const DashboardPage: React.FC = () => {
   }, []);
 
   return (
-    <MainLayout>
-      {/* ── Page header ─────────────────────────────── */}
+    <>
       <div className="dashboard-header">
         <div>
           <h2 className="text-display-lg font-headline mb-xs">
@@ -55,6 +53,6 @@ export const DashboardPage: React.FC = () => {
 
       {/* ── Recent deals table ──────────────────────── */}
       <RecentDeals deals={recentDeals} />
-    </MainLayout>
+    </>
   );
 };

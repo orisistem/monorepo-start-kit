@@ -1,4 +1,5 @@
-import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../../../modules/auth/application/AuthStore';
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -15,8 +16,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onToggleMobile,
   isMobile,
 }) => {
+  const { user, logout } = useAuthStore();
+  const navigate = useNavigate();
+
   const collapsedClass = isMobile ? '' : (isCollapsed ? 'collapsed' : '');
   const mobileClass = isMobile ? (isMobileOpen ? 'mobile-open' : 'mobile-closed') : '';
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login', { replace: true });
+  };
 
   return (
     <aside className={`sidebar ${collapsedClass} ${mobileClass}`}>
@@ -61,43 +70,49 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       <nav className="sidebar-nav">
-        <a className="nav-item active" href="#" title="Painel Geral">
+        <NavLink className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`} to="/" title="Painel Geral" end>
           <span className="material-symbols-outlined">dashboard</span>
           {(!isCollapsed || isMobile) && <span className="text-label-caps">Painel Geral</span>}
-        </a>
-        <a className="nav-item" href="#" title="Clientes">
+        </NavLink>
+        <NavLink className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`} to="/clientes" title="Clientes">
           <span className="material-symbols-outlined">group</span>
           {(!isCollapsed || isMobile) && <span className="text-label-caps">Clientes</span>}
-        </a>
-        <a className="nav-item" href="#" title="Propostas">
+        </NavLink>
+        <NavLink className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`} to="/propostas" title="Propostas">
           <span className="material-symbols-outlined">description</span>
           {(!isCollapsed || isMobile) && <span className="text-label-caps">Propostas</span>}
-        </a>
-        <a className="nav-item" href="#" title="Contratos">
+        </NavLink>
+        <NavLink className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`} to="/contratos" title="Contratos">
           <span className="material-symbols-outlined">verified</span>
           {(!isCollapsed || isMobile) && <span className="text-label-caps">Contratos</span>}
-        </a>
-        <a className="nav-item" href="#" title="Configurações">
+        </NavLink>
+        <NavLink className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`} to="/configuracoes" title="Configurações">
           <span className="material-symbols-outlined">settings</span>
           {(!isCollapsed || isMobile) && <span className="text-label-caps">Configurações</span>}
-        </a>
+        </NavLink>
       </nav>
 
       <div className="sidebar-footer">
-        <div className="user-profile" title="Marcus Vane - Diretor de Operações">
+        <div className="user-profile" title={`${user?.name} - ${user?.role}`}>
           <div className="avatar">
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8RKuK49ef7pTPmGa-Q3lPRG9zfvhEHUfJt1V-HPN4_UrsGpywiUKgdOqmJhXwuaHJquA_rVsfj9ERtPGaRjKhHtcbqhKn05EqRF5o2QM79UyHlQevkL-LSfaoOb8w9rkn_GdyhJTEHSEP0Ncqm0Ay0ELDR3Own4KteT8ThKZePll1l4CJySsqAzYUS7AhTcikSQFGfvsZq4Tz91PDmw-UH_iWfUsGTMb4o2VFvId0rKxKfc6OtIoTkg"
-              alt="Marcus Vane"
+              src={user?.avatarUrl ?? ''}
+              alt={user?.name ?? ''}
             />
           </div>
           {(!isCollapsed || isMobile) && (
             <div className="user-info">
-              <p className="user-name text-label-caps">Marcus Vane</p>
-              <p className="user-role">Diretor de Operações</p>
+              <p className="user-name text-label-caps">{user?.name}</p>
+              <p className="user-role">{user?.role}</p>
             </div>
           )}
         </div>
+        {(!isCollapsed || isMobile) && (
+          <button className="logout-btn" onClick={handleLogout} title="Sair">
+            <span className="material-symbols-outlined">logout</span>
+            Sair
+          </button>
+        )}
       </div>
     </aside>
   );
