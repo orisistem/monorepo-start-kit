@@ -248,15 +248,38 @@
   text-overflow: ellipsis;
 }
 
-.logout-btn {
+.user-profile-wrapper {
+  position: relative;
+}
+
+.user-dropdown {
+  background-color: var(--color-surface-container);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: 10px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 70;
+  animation: dropdownFadeIn 0.12s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dropdown-item {
   display: flex;
   align-items: center;
   gap: 8px;
-  width: 100%;
-  margin-top: 4px;
   padding: 8px 10px;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   background: transparent;
   color: var(--color-on-surface-variant);
   font-family: inherit;
@@ -265,15 +288,20 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
 }
 
-.logout-btn:hover {
-  background: var(--color-surface-container);
+.dropdown-item:hover {
+  background: var(--color-surface-container-highest);
+  color: var(--color-on-surface);
+}
+
+.dropdown-item:last-child:hover {
   color: var(--color-error);
 }
 
-.logout-btn .material-symbols-outlined {
+.dropdown-item .material-symbols-outlined {
   font-size: 18px;
 }
 
