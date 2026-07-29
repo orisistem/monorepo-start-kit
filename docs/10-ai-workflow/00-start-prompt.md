@@ -1,23 +1,72 @@
-# Prompt Resumido para Iniciar Sessão
+# Session Commander
 
-Cole este bloco no início de cada sessão com a IA para garantir que o contexto do projeto seja estabelecido corretamente.
+> **Instruções para o agente de IA:** Ao ler este documento, execute a sequência abaixo automaticamente. Não apenas armazene o contexto — **aja**.
+
+## 1. Projeto
 
 ```
-PROJETO: monorepo-start-kit
+PROJETO: [nome-do-projeto]
 ARQUITETURA: Feature-Sliced Design + Clean Architecture (backend e frontend)
-REGRAS:
+STACK: [backend: framework + ORM + banco] | [frontend: framework + estado + HTTP]
+```
+
+## 2. Regras Essenciais
+
 - Dependências apontam para dentro (domain não sabe de infra/presentation)
 - kebab-case para pastas e arquivos
 - Conventional Commits para mensagens
-- ESLint + Prettier para formato
 - Idioma: backend em inglês; frontend: código em inglês, UI em português
-- Testes: unitários isolados, integração com banco real, e2e para fluxos críticos
 - Qualidade: sem any, sem try/catch vazio, sem magic numbers, sem código comentado
-DOCS: docs/10-ai-workflow/ contém o fluxo completo de IA
-CARREGAMENTO:
-- Nível 1 (bootstrap): leia MEMORY.md e CODEBASE.md para retomar contexto da sessão anterior
-- Nível 2 (fase): leia o documento da fase atual (02 a 07) conforme a natureza da tarefa
-- Nível 3 (regra): consulte 09-boas-praticas.md apenas sob demanda, quando houver violação
-- NUNCA leia toda a documentação de uma vez — use lazy loading
-PLANO COMPLETO: docs/10-ai-workflow/12-workflow-plan.md
+- Testes: unitários isolados, integração com banco real, e2e para fluxos críticos
+
+## 3. Sequência de Ação (executar agora)
+
 ```
+1. Ler MEMORY.md              → estado da última sessão, decisões, próximos passos
+2. Ler CODEBASE.md            → mapa atual do sistema, módulos, dependências
+3. Perguntar ao usuário qual frente deseja trabalhar:
+   → backend, frontend, mobile ou infra
+
+4. Ler apenas o plano correspondente em 02-planning/:
+   → backend  → 02-planning/backend-implementation.md
+   → frontend → 02-planning/frontend-implementation.md
+   → mobile   → 02-planning/mobile-implementation.md
+   → infra    → 02-planning/infrastructure-implementation.md
+
+5. Apresentar ao usuário o resumo da frente escolhida:
+   "Frente escolhida: [backend | frontend | mobile | infra]
+    ● [fase atual / tarefas restantes]
+    ● [próxima tarefa sugerida]
+
+    Confirmamos esta frente ou prefere ajustar?"
+
+6. Aguardar resposta do usuário
+
+7. Carregar o documento da fase correspondente:
+   → Se implementação: 05-fluxo-desenvolvimento.md
+   → Se revisão/testes: 06-fluxo-revisao-testes.md
+   → Se manutenção: 07-fluxo-manutencao.md
+
+8. Propor plano de sessão com tarefas específicas do plano escolhido,
+   ordenadas por dependência e risco (de dentro para fora:
+   domain → application → infrastructure → presentation)
+```
+
+## 4. Lazy Loading
+
+| Nível         | O quê                                                       | Quando                  |
+| ------------- | ----------------------------------------------------------- | ----------------------- |
+| **Bootstrap** | MEMORY.md + CODEBASE.md + 02-planning/                      | **Toda sessão** (acima) |
+| **Fase**      | Documento 05, 06 ou 07                                      | Conforme a tarefa       |
+| **Regras**    | 02-business-discovery, 04-fluxo-concepcao, 09-boas-praticas | Apenas se necessário    |
+
+**NUNCA leia toda a documentação de uma vez.**
+
+## 5. Fim da Sessão
+
+Ao encerrar, atualize `MEMORY.md` e o plano em `02-planning/` com:
+
+- O que foi feito
+- Decisões tomadas
+- Próximos passos
+- Tarefas concluídas (atualizar status no plano correspondente)
