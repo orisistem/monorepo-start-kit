@@ -6,10 +6,10 @@ Arquivo vivo que mantém o contexto entre sessões de IA. Leia no **início** de
 
 ## Estado Atual
 
-- **Última sessão:** N/A (projeto recém-inicializado)
+- **Última sessão:** N/A (projeto em estruturação)
 - **Branch ativa:** `main`
-- **Foco atual:** Definição de stack e configuração inicial
-- **Próxima sessão sugerida:** Escolher frameworks (Express/NestJS/Fastify, React/Vue/Angular) e configurar entry points
+- **Foco atual:** Estruturação da documentação e planos de implementação
+- **Próxima sessão sugerida:** Implementação de funcionalidades do desktop (dashboard, pipeline comercial)
 
 ---
 
@@ -21,11 +21,25 @@ Arquivo vivo que mantém o contexto entre sessões de IA. Leia no **início** de
 |--------|---------|--------|
 | `auth` | domain, application, infrastructure (database, external-services), presentation (controllers) | Scaffolded (apenas `.gitkeep`) |
 
-### Frontend (`frontend/src/modules/`)
+### Frontend Web (`frontend/web/src/modules/`)
 
 | Módulo | Camadas | Status |
 |--------|---------|--------|
 | `auth` | domain (entities, ports), application (dto, mappers, usecases), infrastructure (repositories), presentation (components, guards, hooks, pages, store) | Scaffolded (apenas `.gitkeep`) |
+
+### Frontend Desktop (`frontend/desktop/src/modules/`)
+
+| Módulo | Camadas | Status |
+|--------|---------|--------|
+| `counter` | domain (CounterEntity), application (CounterUseCase), infrastructure (TauriCounterRepository), presentation (CounterPage) | ✅ Implementado (exemplo FSD) |
+| `greeting` | domain (GreetingEntity), application (GreetUseCase), infrastructure (TauriGreetingRepository), presentation (GreetingForm) | ✅ Implementado (exemplo FSD) |
+| `dashboard` | domain (types: Deal, PipelineStage, DashboardMetrics), infrastructure (dashboardMockService), presentation (DashboardPage, KPICards, SalesPipeline, GoalProgress, RecentDeals) | ✅ Implementado (CRM pipeline) |
+
+### Frontend Mobile (`frontend/mobile/`)
+
+| Módulo | Camadas | Status |
+|--------|---------|--------|
+| — | — | Apenas `.gitkeep` — estrutura reservada para fase futura |
 
 ---
 
@@ -53,11 +67,12 @@ _Nenhum registrado até o momento._
 
 ## Próximos Passos
 
-1. Definir framework do backend (Express, NestJS, Fastify)
-2. Definir framework do frontend (React, Vue, Angular)
-3. Configurar `backend/src/config/` (DI wiring, env vars)
-4. Configurar `frontend/src/app/` (entry point, routing, providers)
-5. Remover `.gitkeep` e implementar primeiro caso de uso real
+Ver planos detalhados em `02-planning/`:
+
+1. **Desktop** (`02-planning/desktop-implementation.md`): Dashboard comercial (Sprint 3) — expandir pipeline com módulos de orçamento, proposta e contrato
+2. **Backend** (`02-planning/backend-implementation.md`): Setup → Fundação → Casos de Uso → API
+3. **Web** (`02-planning/web-implementation.md`): Setup → 5 sprints
+4. **Infra** (`02-planning/infrastructure-implementation.md`): Docker → Nginx → PostgreSQL → CI/CD → Cloud
 
 ---
 
