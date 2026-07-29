@@ -17,9 +17,9 @@ Escolha seu perfil e siga a trilha correspondente:
 | 3 | `docs/10-ai-workflow/01-principios-gerais.md` | 5 min | Filosofia de uso de IA, regras de ouro, quando usar IA vs manual |
 | 4 | `docs/10-ai-workflow/09-boas-praticas.md` | 10 min | **Leitura obrigatória** — toda regra que a IA e você devem seguir |
 | 5 | `docs/08-workflow/README.md` | 5 min | Como commitar, branches, PRs |
-| 6 | `docs/10-ai-workflow/00-start-prompt.md` | 2 min | O bloco que você cola no início de cada sessão com IA |
+| 6 | `docs/10-ai-workflow/00-start-prompt.md` | 5 min | **Session Commander** — o comando que a IA executa no início de cada sessão |
 
-**Depois:** Escolha uma task pequena e siga o fluxo de desenvolvimento (`docs/10-ai-workflow/05-fluxo-desenvolvimento.md`).
+**Depois:** Escolha uma frente em `docs/02-planning/` (backend, web, desktop, mobile ou infra) e siga o fluxo de desenvolvimento (`docs/10-ai-workflow/05-fluxo-desenvolvimento.md`).
 
 ---
 
@@ -29,7 +29,7 @@ Escolha seu perfil e siga a trilha correspondente:
 |-------|-----------|-------|
 | 1 | `README.md` + `AGENTS.md` | 5 min |
 | 2 | `docs/10-ai-workflow/09-boas-praticas.md` (foco nas seções 1-4) | 5 min |
-| 3 | `docs/10-ai-workflow/00-start-prompt.md` | 2 min |
+| 3 | `docs/10-ai-workflow/00-start-prompt.md` | 5 min |
 | 4 | `docs/10-ai-workflow/11-codebase.md` (CODEBASE.md) | 5 min |
 
 **Depois:** Vá direto para a fase relevante do seu trabalho:
@@ -46,9 +46,10 @@ Escolha seu perfil e siga a trilha correspondente:
 |-------|-----------|-------|
 | 1 | `README.md` + `AGENTS.md` | 5 min |
 | 2 | `docs/10-ai-workflow/09-boas-praticas.md` (revisar seções 1-3, 6-7) | 5 min |
-| 3 | `docs/10-ai-workflow/12-workflow-plan.md` | 10 min |
-| 4 | `docs/10-ai-workflow/01-principios-gerais.md` | 5 min |
-| 5 | `docs/09-testing/README.md` | 5 min |
+| 3 | `docs/02-planning/` (visão geral dos planos) | 5 min | Conhecer as frentes de implementação disponíveis |
+| 4 | `docs/10-ai-workflow/12-workflow-plan.md` | 10 min |
+| 5 | `docs/10-ai-workflow/01-principios-gerais.md` | 5 min |
+| 6 | `docs/09-testing/README.md` | 5 min |
 
 **Depois:** Avalie os gaps documentados no `12-workflow-plan.md` e priorize as tarefas do roteiro.
 
@@ -58,10 +59,11 @@ Escolha seu perfil e siga a trilha correspondente:
 
 | Ordem | Documento | Tokens |
 |-------|-----------|--------|
-| 1 | `docs/10-ai-workflow/00-start-prompt.md` (colar no prompt) | ~300 |
+| 1 | `docs/10-ai-workflow/00-start-prompt.md` (colar no prompt) | ~500 |
 | 2 | `MEMORY.md` — contexto da sessão anterior | ~200 |
 | 3 | `CODEBASE.md` — mapa atual do sistema | ~300 |
-| 4 | Documento da fase atual (02 a 07) — **apenas 1** | ~700 |
+| 4 | `02-planning/` — planos de implementação (escolher frente) | ~200 |
+| 5 | Documento da fase atual (05, 06 ou 07) — **apenas 1** | ~700 |
 
 **Regra:** Nunca leia toda a documentação de uma vez. Use lazy loading (veja `12-workflow-plan.md`, Seção 8).
 
@@ -102,4 +104,4 @@ npm test          # Deve passar (placeholder verde)
 npm run commit    # Testar o Commitizen interativo
 ```
 
-Depois, pegue uma task simples do backlog e siga o fluxo de IA: análise com `05-fluxo-desenvolvimento.md` → implementação → validação com `06-fluxo-revisao-testes.md` → commit → PR.
+Depois, escolha uma frente em `docs/02-planning/` e siga o fluxo de IA: análise com `05-fluxo-desenvolvimento.md` → implementação → validação com `06-fluxo-revisao-testes.md` → commit → PR.

@@ -10,7 +10,8 @@
 
 | # | Seção | Estado | Destaques |
 |---|-------|--------|-----------|
-| `01-requirements/` | ✅ Parcial | Template PRD completo com histórias, critérios de aceitação, regras de negócio, DoD |
+| `01-requirements/` | ✅ Parcial | Template PRD + PRD OriDeal (Software de Gestão Comercial) |
+| `02-planning/` | ✅ Parcial | Templates de plano: backend, web, desktop, mobile, infraestrutura (genéricos, stack-agnostic) |
 | `03-architecture/` | ✅ Parcial | Template de tech-spec + database README + diagrama xmind |
 | `07-monitoring/` | ✅ Parcial | README com diretrizes de SLA/SLO/SLI, dashboards e alertas |
 | `08-workflow/` | ✅ Sólido | Conventional Commits, Commitizen, Husky, `npm run commit` e `npm run ship` |
@@ -21,7 +22,6 @@
 
 | # | Seção | O que deveria conter |
 |---|-------|---------------------|
-| `02-planning/` | Roadmaps, sprint plans, resource allocation, estimativas |
 | `04-api/` | OpenAPI/Swagger specs, Postman collections, contratos |
 | `05-manuals/` | Runbooks, user guides, admin manuals |
 | `06-meetings/` | Minutas de dailies, planning, retrospectivas |
@@ -83,7 +83,6 @@
 | Sem ADR template | 🔴 Alta | O fluxo de concepção manda "gere um ADR", mas não há template em `03-architecture/` |
 | Sem OpenAPI template | 🟡 Média | `04-api/` vazio — sem ponto de partida para specs de API |
 | Sem runbooks | 🟡 Média | `05-manuals/` vazio — como rodar, debugar, fazer deploy |
-| Sem planning templates | 🟡 Média | `02-planning/` vazio — sem template de sprint, milestone ou roadmap |
 | Sem CI/CD docs | 🟡 Média | `.github/workflows/` existe como diretório mas sem documentação do pipeline |
 | Sem decision framework de ferramentas | 🟡 Média | Quando usar OpenCode vs Antigravity vs Copilot vs Claude Code? A decisão é implícita |
 
@@ -91,7 +90,7 @@
 
 | Gap | Descrição |
 |-----|-----------|
-| **Seções numeradas sem conteúdo**: `02`, `04`, `05`, `06` existem como estrutura mas sem templates. A IA referencia estes diretórios nos prompts mas eles não têm ponto de partida. |
+| **Seções numeradas sem conteúdo**: `04`, `05`, `06` existem como estrutura mas sem templates. A IA referencia estes diretórios nos prompts mas eles não têm ponto de partida. |
 | **`08-workflow/` é só Git**: O nome sugere workflow completo, mas cobre apenas Conventional Commits. Deveria cobrir branching strategy, code review flow, release flow. |
 | **`00-start-prompt.md` é OpenCode-específico**: Não contempla Claude Code, Copilot Chat, Cursor, ou outros agentes. Um template multi-agente seria mais útil como referência. |
 | **Falta rastreabilidade entre documentos**: Um PRD em `01-requirements/` deveria linkar para sua tech-spec em `03-architecture/`, seus ADRs, e seus testes. Hoje cada doc vive isolado. |
@@ -215,23 +214,27 @@
 
 | # | Tarefa | Descrição | Saída |
 |---|--------|-----------|-------|
-| T-05 | Criar template de sprint/milestone | Em `docs/02-planning/` — como quebrar épicos em tasks, estimar, alocar | Template de sprint com seções: objetivo, tasks, responsáveis, DoD |
-| T-06 | Criar template de OpenAPI | Em `docs/04-api/` — ponto de partida para specs de API REST | Arquivo base com info, servers, paths, components, security |
-| T-07 | Criar template de PR | ✅ **Concluído** — `docs/08-workflow/PR-template.md` | Checklist do autor + checklist do revisor + artefatos relacionados |
-| T-08 | Documentar CI/CD pipeline | Em `docs/08-workflow/` ou `.github/` — o que roda, quando, por que | Diagrama do pipeline: lint → test → build → deploy |
-| T-09 | Criar runbook base | Em `docs/05-manuals/` — como rodar localmente, como debugar, como fazer deploy | Runbook de dev environment |
-| T-10 | Expandir `08-workflow/` além de Git | ✅ **Concluído** — `docs/08-workflow/README.md` reescrito | Branching, PR flow, code review rules, merge rules (7 critérios), release flow |
-| T-11 | Criar decision framework multi-agente | ✅ **Concluído** — `08-ferramentas.md` reescrito como framework multi-agente | Claude Code, OpenCode, Copilot, Copilot Chat, Cursor, Antigravity; matriz de decisão por fase, tipo de tarefa e complexidade; fluxo de alternância com exemplo real |
+| T-05 | Criar template de plano de implementação backend | ✅ **Concluído** — `docs/02-planning/backend-implementation.md` | Template genérico: 5 fases, ~21 tasks stack-agnostic |
+| T-06 | Criar template de plano de implementação frontend web | ✅ **Concluído** — `docs/02-planning/web-implementation.md` | Template genérico: 5 sprints, ~31 tasks stack-agnostic |
+| T-07 | Criar template de plano de implementação desktop | ✅ **Concluído** — `docs/02-planning/desktop-implementation.md` | Template específico Tauri: 7 sprints, ~34 tasks |
+| T-08 | Criar template de plano de implementação mobile | ✅ **Concluído** — `docs/02-planning/mobile-implementation.md` | Template genérico: 5 sprints, ~32 tasks stack-agnostic |
+| T-09 | Criar template de plano de implementação infraestrutura | ✅ **Concluído** — `docs/02-planning/infrastructure-implementation.md` | Template genérico: 7 áreas, ~42 tasks |
+| T-10 | Criar template de OpenAPI | Em `docs/04-api/` — ponto de partida para specs de API REST | Arquivo base com info, servers, paths, components, security |
+| T-11 | Criar template de PR | ✅ **Concluído** — `docs/08-workflow/PR-template.md` | Checklist do autor + checklist do revisor + artefatos relacionados |
+| T-12 | Documentar CI/CD pipeline | Em `docs/08-workflow/` ou `.github/` — o que roda, quando, por que | Diagrama do pipeline: lint → test → build → deploy |
+| T-13 | Criar runbook base | Em `docs/05-manuals/` — como rodar localmente, como debugar, como fazer deploy | Runbook de dev environment |
+| T-14 | Expandir `08-workflow/` além de Git | ✅ **Concluído** — `docs/08-workflow/README.md` reescrito | Branching, PR flow, code review rules, merge rules (7 critérios), release flow |
+| T-15 | Criar decision framework multi-agente | ✅ **Concluído** — `08-ferramentas.md` reescrito como framework multi-agente | Claude Code, OpenCode, Copilot, Copilot Chat, Cursor, Antigravity; matriz de decisão por fase, tipo de tarefa e complexidade; fluxo de alternância com exemplo real |
 
 ### 5.3 Prioridade 🔵 — Desejáveis (melhorias contínuas)
 
 | # | Tarefa | Descrição | Saída |
 |---|--------|-----------|-------|
-| T-12 | Criar índice de rastreabilidade | Template que linka PRD → Tech-Spec → ADRs → Tasks → Tests — rastreabilidade fim a fim | Script ou template de traceability matrix |
-| T-13 | Documentar anti-patterns de IA | Coletar erros comuns que a IA comete neste projeto (ex: importar framework na domain, esquecer pt-BR na UI) | Seção "Anti-patterns" em `09-boas-praticas.md` ou arquivo separado |
-| T-14 | Criar template de "debug prompt" | Quando a IA está presa em um erro, como reescrever o prompt para destravar | Template de escalação de prompt |
-| T-15 | Criar métricas de eficácia da IA | O que medir para saber se o fluxo AI-assisted está funcionando: tempo de ciclo, taxa de aceitação, bugs/feature, cobertura | Documento de métricas em `10-ai-workflow/` |
-| T-16 | Atualizar `00-start-prompt.md` para multi-agente | Versões do prompt de inicialização para OpenCode, Claude Code, e Copilot Chat | Arquivo com variantes por ferramenta |
+| T-16 | Criar índice de rastreabilidade | Template que linka PRD → Tech-Spec → ADRs → Tasks → Tests — rastreabilidade fim a fim | Script ou template de traceability matrix |
+| T-17 | Documentar anti-patterns de IA | Coletar erros comuns que a IA comete neste projeto (ex: importar framework na domain, esquecer pt-BR na UI) | Seção "Anti-patterns" em `09-boas-praticas.md` ou arquivo separado |
+| T-18 | Criar template de "debug prompt" | Quando a IA está presa em um erro, como reescrever o prompt para destravar | Template de escalação de prompt |
+| T-19 | Criar métricas de eficácia da IA | O que medir para saber se o fluxo AI-assisted está funcionando: tempo de ciclo, taxa de aceitação, bugs/feature, cobertura | Documento de métricas em `10-ai-workflow/` |
+| T-20 | Atualizar `00-start-prompt.md` para multi-agente | Versões do prompt de inicialização para OpenCode, Claude Code, e Copilot Chat | Arquivo com variantes por ferramenta |
 
 ---
 
@@ -239,15 +242,19 @@
 
 ### 6.1 Ao iniciar qualquer sessão neste projeto
 
-1. **Ler** `docs/10-ai-workflow/00-start-prompt.md` — estabelecer contexto do projeto
-2. **Ler** `docs/10-ai-workflow/09-boas-praticas.md` — regras sintáticas e arquiteturais
-3. **Ler** `docs/10-ai-workflow/10-memory.md` (MEMORY.md) — retomar estado da sessão anterior
-4. **Ler** `docs/10-ai-workflow/11-codebase.md` (CODEBASE.md) — mapa atualizado do sistema
-5. **Identificar a fase** em que a tarefa se encontra (Discovery → Concepção → Desenvolvimento → Revisão → Manutenção)
-6. **Ler o documento da fase** correspondente (`02` a `07`) e seguir o fluxo descrito
-7. **Usar os templates** apropriados (`PRD-template.md`, `tech-spec-template.md`, ADR template)
+Siga o fluxo definido em `00-start-prompt.md` (Session Commander):
+
+1. **Ler** `docs/10-ai-workflow/00-start-prompt.md` — commander document com instruções de ação
+2. **Ler** `MEMORY.md` — retomar estado da sessão anterior
+3. **Ler** `CODEBASE.md` — mapa atualizado do sistema
+4. **Ler** `02-planning/` — planos de implementação disponíveis (backend, web, desktop, mobile, infra)
+5. **Apresentar menu** ao usuário com as frentes de trabalho e seus respectivos progressos
+6. **Aguardar confirmação** da frente escolhida
+7. **Ler o documento da fase** correspondente (`05`, `06` ou `07`) e seguir o fluxo descrito
 8. **Aplicar as skills** relevantes (`feature-sliced`, `test-pyramid`, `tech-debt`)
-9. **Ao final da sessão**, atualizar `MEMORY.md` com: o que foi feito, decisões tomadas, descobertas, próximos passos
+9. **Ao final da sessão**, atualizar `MEMORY.md` e o plano em `02-planning/` com: o que foi feito, tarefas concluídas, decisões tomadas, próximos passos
+
+Consulte `09-boas-praticas.md` apenas sob demanda, quando houver violação de regra.
 
 ### 6.2 Checklist de conformidade (toda geração de código)
 
@@ -323,33 +330,36 @@ Se o agente de IA lesse todos os 12+ documentos de `10-ai-workflow/` no início 
 ### A solução: lazy loading em 3 níveis
 
 ```
-Nível 1 — BOOTSTRAP (toda sessão, ~500 tokens)
-├── 00-start-prompt.md   ← Prompt compacto com regras essenciais
+Nível 1 — BOOTSTRAP (toda sessão, ~700 tokens)
+├── 00-start-prompt.md   ← Commander document (instruções de ação)
 ├── MEMORY.md            ← Estado da sessão anterior
-└── CODEBASE.md          ← Mapa atual do sistema
+├── CODEBASE.md          ← Mapa atual do sistema
+└── 02-planning/         ← Planos de implementação (cardápio de trabalho)
 
-Nível 2 — FASE (1 documento, conforme a natureza da tarefa)
-├── 02-business-discovery.md   ← "Preciso entender o negócio"
-├── 04-fluxo-concepcao.md      ← "Preciso gerar requisitos"
-├── 05-fluxo-desenvolvimento.md ← "Preciso implementar código"
-├── 06-fluxo-revisao-testes.md ← "Preciso revisar ou testar"
-└── 07-fluxo-manutencao.md     ← "Preciso corrigir um bug"
+Nível 2 — FASE (1 documento, conforme a frente escolhida)
+├── 05-fluxo-desenvolvimento.md ← "Implementar código"
+├── 06-fluxo-revisao-testes.md ← "Revisar ou testar"
+└── 07-fluxo-manutencao.md     ← "Corrigir um bug"
 
 Nível 3 — REGRA (sob demanda, quando a IA viola uma regra ou hesita)
 ├── 09-boas-praticas.md        ← "A IA esqueceu a política de idiomas"
 ├── 03-prompt-engineering.md   ← "Preciso reformular meu prompt"
-└── 08-ferramentas.md          ← "Qual ferramenta usar para esta tarefa?"
+├── 08-ferramentas.md          ← "Qual ferramenta usar para esta tarefa?"
+├── 02-business-discovery.md   ← "Preciso entender o negócio" (Discovery)
+└── 04-fluxo-concepcao.md      ← "Preciso gerar requisitos" (Concepção)
+
+> Nota: Discovery (02) e Concepção (04) são fases pontuais, não diárias. Para o dia a dia de desenvolvimento, o bootstrap cobre 90% das necessidades de contexto.
 ```
 
 ### Carga típica de contexto por tipo de sessão
 
 | Tipo de sessão | Documentos carregados | Tokens estimados |
 |---------------|----------------------|-----------------|
-| Desenvolvimento de feature | Nível 1 + `05-fluxo-desenvolvimento.md` | ~1.200 |
-| Correção de bug | Nível 1 + `07-fluxo-manutencao.md` | ~1.100 |
-| Concepção de feature nova | Nível 1 + `04-fluxo-concepcao.md` + `02-business-discovery.md` | ~2.000 |
-| Code review | Nível 1 + `06-fluxo-revisao-testes.md` | ~1.100 |
-| Onboarding (primeira sessão) | Nível 1 + `01-principios-gerais.md` + `09-boas-praticas.md` + este documento | ~3.500 |
+| Desenvolvimento de feature | Nível 1 + `05-fluxo-desenvolvimento.md` | ~1.500 |
+| Correção de bug | Nível 1 + `07-fluxo-manutencao.md` | ~1.300 |
+| Concepção de feature nova | Nível 1 + `04-fluxo-concepcao.md` + `02-business-discovery.md` | ~2.500 |
+| Code review | Nível 1 + `06-fluxo-revisao-testes.md` | ~1.300 |
+| Onboarding (primeira sessão) | `00-onboarding.md` + `01-principios-gerais.md` + `09-boas-praticas.md` + este documento | ~3.500 |
 
 ### Gatilhos para carregar Nível 3
 
@@ -382,4 +392,4 @@ Este documento deve ser revisado e atualizado:
 
 ---
 
-> **📖 Próximo passo para o agente de IA:** Leia este documento. Identifique a fase atual do projeto (estamos na Fase 0 — Template). Priorize executar as tarefas T-01 a T-04 (bloqueantes) para deixar o template pronto para uso em projetos reais.
+> **📖 Próximo passo para o agente de IA:** Leia este documento. Identifique a fase atual do projeto (estamos na **Fase 3 — Planejamento**, com a base documental concluída). Priorize executar as tarefas de implementação dos planos em `02-planning/`, começando pelas frentes com mais código já escrito (desktop).

@@ -9,7 +9,13 @@
 | Você quer... | Leia isto | E depois isto |
 |-------------|-----------|---------------|
 | **Entender o projeto pela primeira vez** | `docs/00-onboarding.md` | Siga a trilha do seu perfil |
-| **Iniciar uma sessão com IA** | `docs/10-ai-workflow/00-start-prompt.md` | `MEMORY.md` + `CODEBASE.md` |
+| **Iniciar uma sessão com IA** | `docs/10-ai-workflow/00-start-prompt.md` | `MEMORY.md` + `CODEBASE.md` + `02-planning/` |
+| **Ver planos de implementação** | `docs/02-planning/` | Escolher frente (backend, web, desktop, mobile, infra) |
+| **Implementar backend** | `docs/02-planning/backend-implementation.md` | `docs/10-ai-workflow/05-fluxo-desenvolvimento.md` |
+| **Implementar frontend web** | `docs/02-planning/web-implementation.md` | `docs/10-ai-workflow/05-fluxo-desenvolvimento.md` |
+| **Implementar desktop (Tauri)** | `docs/02-planning/desktop-implementation.md` | `docs/10-ai-workflow/05-fluxo-desenvolvimento.md` |
+| **Implementar mobile** | `docs/02-planning/mobile-implementation.md` | `docs/10-ai-workflow/05-fluxo-desenvolvimento.md` |
+| **Implementar infraestrutura** | `docs/02-planning/infrastructure-implementation.md` | `docs/10-ai-workflow/05-fluxo-desenvolvimento.md` |
 | **Entender um domínio de negócio novo** | `docs/10-ai-workflow/02-business-discovery.md` | Use os prompts de domain discovery |
 | **Escrever requisitos de uma feature** | `docs/01-requirements/PRD-template.md` | `docs/10-ai-workflow/04-fluxo-concepcao.md` |
 | **Escrever a especificação técnica** | `docs/03-architecture/tech-spec-template.md` | `docs/10-ai-workflow/04-fluxo-concepcao.md` |
@@ -98,5 +104,10 @@ FASE 7: MANUTENÇÃO (bugs, refatoração)
 | Teste E2E | — | `09-testing/README.md` + skill `test-pyramid` |
 | PR | PR template | `08-workflow/README.md` |
 | Sprint plan | `docs/02-planning/` | — |
+| Backend implementation plan | `docs/02-planning/backend-implementation.md` | Tech Spec, PRD |
+| Web implementation plan | `docs/02-planning/web-implementation.md` | Tech Spec, PRD |
+| Desktop implementation plan | `docs/02-planning/desktop-implementation.md` | Tech Spec, PRD |
+| Mobile implementation plan | `docs/02-planning/mobile-implementation.md` | Tech Spec, PRD |
+| Infra implementation plan | `docs/02-planning/infrastructure-implementation.md` | Tech Spec |
 | Runbook | `docs/05-manuals/` | — |
 | OpenAPI spec | `docs/04-api/` | — |
