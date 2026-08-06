@@ -67,7 +67,7 @@ export const LoginPage = () => {
         </form>
 
         <p className="login-hint">
-          Use <strong>marcus@orideal.com</strong> / <strong>123456</strong>
+          Use <strong>user@example.com</strong> / <strong>123456</strong>
         </p>
       </div>
     </div>

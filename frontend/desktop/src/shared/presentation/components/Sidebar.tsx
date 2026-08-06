@@ -119,26 +119,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       <nav className="sidebar-nav">
-        <NavLink onClick={handleNavClick} className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`} to="/" title="Painel Geral" end>
+        <NavLink onClick={handleNavClick} className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`} to="/" title="Dashboard" end>
           <span className="material-symbols-outlined">dashboard</span>
-          {(!isCollapsed || isMobile) && <span className="text-label-caps">Painel Geral</span>}
+          {(!isCollapsed || isMobile) && <span className="text-label-caps">Dashboard</span>}
         </NavLink>
-        <NavLink onClick={handleNavClick} className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`} to="/clientes" title="Clientes">
-          <span className="material-symbols-outlined">group</span>
-          {(!isCollapsed || isMobile) && <span className="text-label-caps">Clientes</span>}
-        </NavLink>
-        <NavLink onClick={handleNavClick} className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`} to="/propostas" title="Propostas">
-          <span className="material-symbols-outlined">description</span>
-          {(!isCollapsed || isMobile) && <span className="text-label-caps">Propostas</span>}
-        </NavLink>
-        <NavLink onClick={handleNavClick} className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`} to="/contratos" title="Contratos">
-          <span className="material-symbols-outlined">verified</span>
-          {(!isCollapsed || isMobile) && <span className="text-label-caps">Contratos</span>}
-        </NavLink>
-        <NavLink onClick={handleNavClick} className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`} to="/configuracoes" title="Configurações">
-          <span className="material-symbols-outlined">settings</span>
-          {(!isCollapsed || isMobile) && <span className="text-label-caps">Configurações</span>}
-        </NavLink>
+        {/* Add your navigation items here */}
       </nav>
 
       <div className="sidebar-footer">
@@ -165,17 +150,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
           {dropdownOpen && (
             <div className="user-dropdown" style={dropdownStyle}>
-              <NavLink
-                className="dropdown-item"
-                to="/configuracoes"
-                onClick={() => setDropdownOpen(false)}
-              >
-                <span className="material-symbols-outlined">settings</span>
-                Configurações
-              </NavLink>
+              {/* Add your dropdown items here */}
               <button className="dropdown-item" onClick={handleLogout}>
                 <span className="material-symbols-outlined">logout</span>
-                Sair
+                Logout
               </button>
             </div>
           )}
