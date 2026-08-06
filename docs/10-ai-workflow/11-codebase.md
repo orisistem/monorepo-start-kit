@@ -7,7 +7,7 @@ Documento vivo que mapeia a estrutura do código-fonte, dependências entre mód
 ## Visão Geral
 
 ```
-orideal
+monorepo-start-kit
 ├── backend/          # Node.js (stack a definir)
 │   └── src/
 │       ├── config/           # DI wiring, env vars, setup do framework
@@ -19,7 +19,7 @@ orideal
 │       │       └── presentation/    # Controllers, middleware
 │       └── shared/           # Código reutilizável entre módulos
 ├── frontend/
-│   ├── web/           # Node.js (stack a definir — scaffolded)
+│   ├── web/           # React + Vite + Zustand (scaffolded)
 │   │   └── src/
 │   │       ├── app/              # Entry point, routing, providers
 │   │       ├── modules/          # Feature modules (FSD)
@@ -28,11 +28,10 @@ orideal
 │   │   ├── src/
 │   │   │   ├── app/              # Entry point, App.tsx, routing
 │   │   │   ├── modules/          # Feature modules (FSD)
-│   │   │   │   ├── counter/      # Clean Architecture (entity → use case → Tauri cmd)
-│   │   │   │   ├── greeting/     # Clean Architecture (entity → use case → Tauri cmd)
-│   │   │   │   └── dashboard/    # CRM/Pipeline comercial (pages, components)
+│   │   │   │   ├── auth/         # Autenticação (login, sessão)
+│   │   │   │   └── dashboard/    # Template de dashboard (métricas vazias)
 │   │   │   └── shared/
-│   │   │       ├── theme/        # Design System MD3 dark (colors, typography, spacing, tokens.css)
+│   │   │       ├── theme/        # Design System (colors, typography, spacing)
 │   │   │       └── presentation/ # MainLayout, Sidebar, TopNav
 │   │   └── src-tauri/            # Rust backend (Tauri commands, plugins)
 │   └── mobile/         # React Native / Expo (future)
@@ -59,9 +58,8 @@ orideal
 
 | Módulo | Responsabilidade | Camadas ativas | Depende de | Usado por |
 |--------|-----------------|----------------|------------|-----------|
-| `counter` | Exemplo FSD — contador com comando Tauri | domain, application, infrastructure, presentation | `shared/` | — |
-| `greeting` | Exemplo FSD — saudação com comando Tauri | domain, application, infrastructure, presentation | `shared/` | — |
-| `dashboard` | Pipeline comercial (CRM) — KPIs, funil de vendas, negócios | domain, infrastructure (mock), presentation | `shared/theme`, `shared/presentation` | — |
+| `auth` | Autenticação (login, sessão) | domain, application, infrastructure, presentation | `shared/` | — |
+| `dashboard` | Template de dashboard (métricas genéricas) | presentation | `shared/theme`, `shared/presentation` | — |
 
 ---
 
@@ -89,7 +87,7 @@ orideal
 
 | Camada | Conteúdo | Status |
 |--------|----------|--------|
-| `theme/` | Design System MD3 dark (colors, typography, spacing, tokens.css, dashboard.css) | ✅ Implementado |
+| `theme/` | Design System (colors, typography, spacing, tokens.css) | ✅ Implementado |
 | `presentation/` | MainLayout, Sidebar, TopNav | ✅ Implementado |
 
 ---
@@ -102,8 +100,7 @@ orideal
 | Frontend web app | `frontend/web/src/app/` | Entry point, routing, providers (scaffolded) |
 | Frontend desktop app | `frontend/desktop/src/app/` | Entry point, App.tsx, routing (Tauri + React) |
 | Desktop Tauri backend | `frontend/desktop/src-tauri/` | Rust runtime, Tauri commands, plugins |
-| Desktop modules | `frontend/desktop/src/modules/` | counter, greeting, dashboard (CRM pipeline) |
-| PRD OriDeal | `docs/01-requirements/PRD - Software de Gestão Comercial.md` | PRD do sistema OriDeal |
+| Desktop modules | `frontend/desktop/src/modules/` | auth, dashboard (template) |
 | Plano backend | `docs/02-planning/backend-implementation.md` | Plano de implementação do backend |
 | Plano web | `docs/02-planning/web-implementation.md` | Plano de implementação do frontend web |
 | Plano desktop | `docs/02-planning/desktop-implementation.md` | Plano de implementação do desktop (Tauri) |
@@ -131,8 +128,7 @@ orideal
 
 ```
 frontend/desktop/ → standalone (Tauri commands via Rust, sem dependência de backend remoto)
-  ├── modules/counter/     → shared/
-  ├── modules/greeting/    → shared/
+  ├── modules/auth/        → shared/
   └── modules/dashboard/   → shared/theme, shared/presentation
 
 frontend/web/
