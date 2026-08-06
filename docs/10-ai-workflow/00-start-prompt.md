@@ -5,7 +5,7 @@
 ## 1. Projeto
 
 ```
-PROJETO: orideal
+PROJETO: monorepo-start-kit
 ARQUITETURA: Feature-Sliced Design + Clean Architecture (backend, frontend web e desktop)
 STACK: [backend: framework + ORM + banco] | [desktop: Tauri v2 + React 19 + Tailwind v4] | [web: React + Vite + Zustand]
 ```
@@ -22,8 +22,8 @@ STACK: [backend: framework + ORM + banco] | [desktop: Tauri v2 + React 19 + Tail
 ## 3. Sequência de Ação (executar agora)
 
 ```
-1. Ler MEMORY.md              → estado da última sessão, decisões, próximos passos
-2. Ler CODEBASE.md            → mapa atual do sistema, módulos, dependências
+1. Ler 10-memory.md           → estado da última sessão, decisões, próximos passos
+2. Ler 11-codebase.md         → mapa atual do sistema, módulos, dependências
 3. Perguntar ao usuário qual frente deseja trabalhar:
    → backend, frontend web, frontend desktop ou infra
 
@@ -57,7 +57,7 @@ STACK: [backend: framework + ORM + banco] | [desktop: Tauri v2 + React 19 + Tail
 
 | Nível | O quê | Quando |
 |-------|-------|--------|
-| **Bootstrap** | MEMORY.md + CODEBASE.md + 02-planning/ | **Toda sessão** (acima) |
+| **Bootstrap** | 10-memory.md + 11-codebase.md + 02-planning/ | **Toda sessão** (acima) |
 | **Fase** | Documento 05, 06 ou 07 | Conforme a tarefa |
 | **Regras** | 02-business-discovery, 04-fluxo-concepcao, 09-boas-praticas | Apenas se necessário |
 
@@ -65,7 +65,7 @@ STACK: [backend: framework + ORM + banco] | [desktop: Tauri v2 + React 19 + Tail
 
 ## 5. Fim da Sessão
 
-Ao encerrar, atualize `MEMORY.md` e o plano em `02-planning/` com:
+Ao encerrar, atualize `10-memory.md` e o plano em `02-planning/` com:
 - O que foi feito
 - Decisões tomadas
 - Próximos passos
